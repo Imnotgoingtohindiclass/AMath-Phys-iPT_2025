@@ -76,7 +76,7 @@ def pulses_to_samps(pulses, pulse_duration, tone_freq, sound_amplitude, samp_rat
     return samps  # return the final sample array
 
 # message to encode into morse code
-msg = "sigma sos"
+msg = "Sound wave"
 print(f"message: {msg}")
 
 # convert the message into morse code pulses
