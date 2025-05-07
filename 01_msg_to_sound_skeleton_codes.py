@@ -42,26 +42,26 @@ def tone(tone_freq, sound_amplitude, start_t, end_t, samp_rate):
 def msg_to_pulses(msg):
     # converts a message string into a string of '1's (tones) and '0's (silence) representing morse code pulses.
     pulses = []
-    words = msg.upper().split(' ') #split the input message into words and convert to uppercase.
+    words = msg.upper().split(' ')  # split the input message into words and convert to uppercase.
 
-    for word in words: #loop through each word
+    for word in words:  # loop through each word
         word_pulses = []
-        for char in word: #loop through each character in the word.
-            if char in MORSE_CODE_DICT: #check if the character is in the morse code dictionary.
-                morse = MORSE_CODE_DICT[char] #get the morse code representation of the character.
+        for char in word:  # loop through each character in the word.
+            if char in MORSE_CODE_DICT:  # check if the character is in the morse code dictionary.
+                morse = MORSE_CODE_DICT[char]  # get the morse code representation of the character.
 
                 char_pulses_with_zeros = []
                 for i, sym in enumerate(morse):
                     if i > 0:
-                        char_pulses_with_zeros.append('0') # add a silence of three dot durations between each morse symbol.
+                        char_pulses_with_zeros.append('0')  # add a silence of one dot duration between each morse symbol.
                     if sym == '.':
-                        char_pulses_with_zeros.append('1') # add a '1' for a dot (short tone).
+                        char_pulses_with_zeros.append('1')  # add a '1' for a dot (short tone).
                     else:
-                        char_pulses_with_zeros.append('111') # add '111' for a dash (long tone).
+                        char_pulses_with_zeros.append('111')  # add '111' for a dash (long tone).
 
                 word_pulses.append(''.join(char_pulses_with_zeros))
-        pulses.append('0'.join(word_pulses)) # add a silence of three dot durations between each letter.
-    return '0'.join(pulses) # add a silence of three dot durations between each word.
+        pulses.append('000'.join(word_pulses))  # add a silence of three dot durations between each letter.
+    return '0000000'.join(pulses)  # add a silence of seven dot durations between each word.
 
 def pulses_to_samps(pulses, pulse_duration, tone_freq, sound_amplitude, samp_rate):
     # converts a sequence of pulses into an audio sample array.
