@@ -90,7 +90,7 @@ samps = pulses_to_samps(pulses, pulse_duration, tone_freq, sound_amplitude, samp
 ts = samp_ts(0, pulse_index_to_start_t(len(pulses), pulse_duration), samp_rate)
 
 # save the generated audio samples as a wav file
-write('morse_code.wav', samp_rate, samps)
+write('02_sound.wav', samp_rate, samps)
 
 # plot the waveform of the generated morse code signal
 plt.figure()
